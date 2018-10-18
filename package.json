@@ -1,6 +1,6 @@
 {
-  "name": "seed1",
-  "version": "0.0.0",
+  "name": "GitHub Search",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
