@@ -1,0 +1,77 @@
+// Bootstrap
+$grid-gutter-width: 0;
+@import '~bootstrap/scss/bootstrap';
+
+// kendo overwrites
+.k-popup {
+  padding: 8px;
+}
+
+// Other
+@import '~normalize.css/normalize.css';
+
+// General
+h2,h3 {
+  margin-top: 2rem;
+}
+
+ul {
+  padding: 0;
+  list-style-type: none;
+}
+
+header {
+  -webkit-box-shadow: 0 4px 3px -1px rgba(0,0,0,0.22);
+  -moz-box-shadow: 0 4px 3px -1px rgba(0,0,0,0.22);
+  box-shadow: 0 4px 3px -1px rgba(0,0,0,0.22);
+  padding: 0.75rem 0;
+  span#page-title {
+    font-size: 1.5rem;
+    color: $primary;
+    font-weight: bold;
+  }
+  .nav {
+    li {
+      margin-left: 0.5rem;
+    }
+  }
+}
+
+ul#user-list {
+  margin: -1rem -1rem 0 -1rem;
+  li {
+    .card {
+      margin: 1rem;
+      background-color: white;
+      -webkit-transition: all 500ms;
+      -moz-transition: all 500ms;
+      -ms-transition: all 500ms;
+      -o-transition: all 500ms;
+      transition: all 500ms;
+      &:hover {
+        background-color: rgba($primary, 0.1);
+        transform: scale(1.05);
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+#userPopupContent {
+  height: 100px;
+  #userProfilePicture {
+    img {
+      height: 100%;
+    }
+  }
+  #userInfo {
+    align-self: center;
+    padding: 0.75rem;
+    p {
+      margin: 0.25rem 0;
+      span {
+        font-weight: bold;
+      }
+    }
+  }
+}

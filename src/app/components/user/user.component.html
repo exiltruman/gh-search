@@ -1,0 +1,48 @@
+<ng-container *ngIf="user">
+  <h3>User Info <i *ngIf="isMyProfile" style="color:#bebebe">(This is my profile)</i></h3>
+  <div id="userPopupContent" class="row">
+    <div id="userProfilePicture">
+      <img
+        [src]="user.avatar_url"
+        alt="profile image"
+        height="100"
+        width="100"
+      >
+    </div>
+    <div id="userInfo">
+      <p><span>Name: </span>{{user.name}}</p>
+      <p><span>Repositories count: </span>{{user.public_repos}}</p>
+      <p><span>Followers count: </span>{{user.followers}}</p>
+    </div>
+  </div>
+
+  <h3>Followers list</h3>
+  <kendo-grid
+    [data]="gridViewForFollowers"
+    [pageSize]="pageSizeForFollowers"
+    [skip]="skipForFollowers"
+    [pageable]="true"
+    (pageChange)="pageChangeForFollowers($event)"
+  >
+    <kendo-grid-column field="login" title="Login name">
+      <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+       <span
+         (click)="redirectToFollowerDetailByLogin(dataItem.login)"
+         style="cursor:pointer"
+       >{{dataItem.login}}</span>
+      </ng-template>
+    </kendo-grid-column>
+  </kendo-grid>
+  
+  <h3>Repositories list</h3>
+  <kendo-grid
+    [data]="gridViewForRepositories"
+    [pageSize]="pageSizeForRepositories"
+    [skip]="skipForRepositories"
+    [pageable]="true"
+    (pageChange)="pageChangeForRepositories($event)"
+  >
+    <kendo-grid-column field="name" title="Repository name">
+    </kendo-grid-column>
+  </kendo-grid>
+</ng-container>

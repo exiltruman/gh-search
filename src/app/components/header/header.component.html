@@ -1,0 +1,25 @@
+<header>
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col">
+        <span id="page-title" [routerLink]="'/overview'">&gt;GitHub search&lt;</span>
+      </div>
+      <div class="col">
+        <ul class="nav nav-pills justify-content-end">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="'/overview'">Overview</a>
+          </li>
+          <li *ngIf="!userService.user" class="nav-item">
+            <a class="nav-link active" [routerLink]="'/login'">Login</a>
+          </li>
+          <li *ngIf="userService.user" class="nav-item">
+            <a class="nav-link" [routerLink]="'/my-profile'">My profile</a>
+          </li>
+          <li *ngIf="userService.user" class="nav-item">
+            <a class="nav-link active" href="#" (click)="logout()">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>

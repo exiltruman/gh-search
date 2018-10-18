@@ -1,0 +1,77 @@
+<h2>Find developers</h2>
+<div class="col">
+  <div class="form-group row col-4">
+    <label class="col-sm-4 col-form-label" for="location">Location</label>
+    <div class="col-sm-8">
+      <div class="input-group">
+        <input id="location"
+               class="form-control"
+               [(ngModel)]="locationInput"
+               type="text"
+               placeholder="e.g. Bratislava"
+               (keyup.enter)="findUsers()"
+        >
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group row col-4">
+    <label class="col-sm-4 col-form-label">Sort by:</label>
+    <div class="col-sm-8">
+      <kendo-dropdownlist
+        class="form-control"
+        [data]="sortOptions"
+        [textField]="'text'"
+        [valueField]="'value'"
+        [(ngModel)]="selectedSortOption"
+      >
+      </kendo-dropdownlist>
+    </div>
+  </div>
+
+  <button class="btn btn-primary col-4" type="button" (click)="findUsers()">Go!</button>
+
+  <div class="row">
+
+  </div>
+  <ng-container *ngIf="users">
+    <h3>Users</h3>
+    <ul id="user-list" class="row justify-content-between">
+      <li *ngFor="let user of (users | async)" class="col-4 text-center">
+        <div
+          class="card"
+          (mousemove)="showUserPopup($event)"
+          (mouseenter)="isUserPopupShown = true; showUserInfo(user)"
+          (mouseleave)="isUserPopupShown = false; activeUser = {}"
+          (click)="redirectToUserDetailByLogin(user.login)"
+        >
+          <div class="card-body">
+            {{user.login}}
+          </div>
+        </div>
+      </li>
+    </ul>
+
+    <kendo-popup
+      *ngIf="isUserPopupShown"
+      [offset]="userPopupOffset"
+      [margin]="userPopupMargin"
+    >
+      <div id="userPopupContent" class="row">
+        <div id="userProfilePicture">
+          <img
+            [src]="activeUser.avatar_url"
+            alt="profile image"
+            height="100"
+            width="100"
+          >
+        </div>
+        <div id="userInfo">
+          <p><span>Name: </span>{{activeUser.name}}</p>
+          <p><span>Repositories count: </span>{{activeUser.public_repos}}</p>
+          <p><span>Followers count: </span>{{activeUser.followers}}</p>
+        </div>
+      </div>
+    </kendo-popup>
+  </ng-container>
+</div>
